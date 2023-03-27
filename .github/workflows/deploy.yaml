@@ -18,11 +18,11 @@ jobs:
 
       - name: Build images
         run: |
-          docker build -t hocha/react-test -f ./client/Dockerfile.dev ./client
+          docker build -t thaihoc2105/react-test -f ./client/Dockerfile.dev ./client
 
       - name: Test
         run: |
-          docker run -e CI=true hocha/react-test npm test
+          docker run -e CI=true thaihoc2105/react-test npm test
       
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -32,11 +32,11 @@ jobs:
 
       - name: Build and push images
         run: |
-          docker build -t hocha/multi-client ./client
-          docker build -t hocha/multi-nginx ./nginx
-          docker build -t hocha/multi-server ./server
-          docker build -t hocha/multi-worker ./worker
-          docker push hocha/multi-client
-          docker push hocha/multi-nginx
-          docker push hocha/multi-server
-          docker push hocha/multi-worker
+          docker build -t thaihoc2105/multi-client ./client
+          docker build -t thaihoc2105/multi-nginx ./nginx
+          docker build -t thaihoc2105/multi-server ./server
+          docker build -t thaihoc2105/multi-worker ./worker
+          docker push thaihoc2105/multi-client
+          docker push thaihoc2105/multi-nginx
+          docker push thaihoc2105/multi-server
+          docker push thaihoc2105/multi-worker
