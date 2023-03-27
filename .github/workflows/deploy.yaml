@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      docker
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build images
+        run: |
+          docker build -t hocha/react-test -f ./client/Dockerfile.dev ./client
+
+      - name: Test
+        run: |
+          docker run -e CI=true hocha/react-test npm test
+
+      - name: Build and push images
+        run: |
+          docker build -t hocha/multi-client ./client
+          docker build -t hocha/multi-nginx ./nginx
+          docker build -t hocha/multi-server ./server
+          docker build -t hocha/multi-worker ./worker
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+          docker push hocha/multi-client
+          docker push hocha/multi-nginx
+          docker push hocha/multi-server
+          docker push hocha/multi-worker
