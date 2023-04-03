@@ -39,4 +39,22 @@ jobs:
           docker push thaihoc2105/multi-client
           docker push thaihoc2105/multi-nginx
           docker push thaihoc2105/multi-server
-          docker push thaihoc2105/multi-worker
+          docker push thaihoc21subbe05/multi-worker
+      
+  # Skip this step cuz we dont create AWS account at the moment
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Deploy to Elastic Beanstalk
+  #     uses: einaregilsson/beanstalk-deploy@v16.0.0
+  #     with:
+  #       aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #       aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #       region: us-east-1
+  #       application_name: multi-docker
+  #       environment_name: MultiDocker-env
+  #       # existing_bucket_name: elasticbeanstalk-us-east-1-748868261989
+  #       # version_label: ${{ github.sha }}
+  #       # deployment_package: deploy.zip
