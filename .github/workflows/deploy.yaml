@@ -39,7 +39,7 @@ jobs:
           docker push thaihoc2105/multi-client
           docker push thaihoc2105/multi-nginx
           docker push thaihoc2105/multi-server
-          docker push thaihoc21subbe05/multi-worker
+          docker push thaihoc2105/multi-worker
       
   # Skip this step cuz we dont create AWS account at the moment
   # deploy:
